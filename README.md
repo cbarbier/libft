@@ -90,3 +90,7 @@ Implementation of the standard library in C
 * ft_toupper
 * ft_uimtoa_base
 * get_next_line
+* ft_printf
+* ft_sprintf
+* ft_fprintf
+* ft_asprintf
