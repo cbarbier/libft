@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/12 12:31:51 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/10/03 16:30:40 by cbarbier         ###   ########.fr       */
+/*   Created: 2016/11/25 11:27:08 by cbarbier          #+#    #+#             */
+/*   Updated: 2016/11/28 11:35:38 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# include <fcntl.h>
+# define BUFF_SIZE 32
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+typedef struct				s_fbuffer
 {
-	char			*res;
-	unsigned int	index;
+	int						fd;
+	char					*data;
+}							t_fbuffer;
 
-	if (!s)
-		return (NULL);
-	res = ft_strnew(len);
-	if (!res)
-		return (NULL);
-	index = 0;
-	while (index < len)
-	{
-		res[index] = s[start + index];
-		index++;
-	}
-	return (res);
-}
+int							get_next_line(const int fd, char **line);
+
+#endif

@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_memswap.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/12 12:31:51 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/10/03 16:30:40 by cbarbier         ###   ########.fr       */
+/*   Created: 2017/02/02 11:51:08 by cbarbier          #+#    #+#             */
+/*   Updated: 2017/02/02 11:53:02 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+void		ft_memswap(void **a, void **b)
 {
-	char			*res;
-	unsigned int	index;
+	void	*tmp;
 
-	if (!s)
-		return (NULL);
-	res = ft_strnew(len);
-	if (!res)
-		return (NULL);
-	index = 0;
-	while (index < len)
-	{
-		res[index] = s[start + index];
-		index++;
-	}
-	return (res);
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }

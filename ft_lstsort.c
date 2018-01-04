@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_lstsort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/12 12:31:51 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/10/03 16:30:40 by cbarbier         ###   ########.fr       */
+/*   Created: 2017/02/06 15:48:18 by cbarbier          #+#    #+#             */
+/*   Updated: 2017/02/14 15:06:42 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+void		ft_lstsort(t_list *lst, int (*fcmp)(t_list *a, t_list *b))
 {
-	char			*res;
-	unsigned int	index;
+	t_list		*start;
+	size_t		len;
+	size_t		last;
 
-	if (!s)
-		return (NULL);
-	res = ft_strnew(len);
-	if (!res)
-		return (NULL);
-	index = 0;
-	while (index < len)
+	if (!lst)
+		return ;
+	start = lst;
+	len = ft_lstlen(lst);
+	while (len)
 	{
-		res[index] = s[start + index];
-		index++;
+		lst = start;
+		last = len--;
+		while (lst->next && last--)
+		{
+			if (fcmp(lst, lst->next) > 0)
+				ft_memswap(&(lst->content), &(lst->next->content));
+			lst = lst->next;
+		}
 	}
-	return (res);
 }

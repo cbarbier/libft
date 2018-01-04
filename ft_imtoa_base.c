@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_imtoa_base.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/12 12:31:51 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/10/03 16:30:40 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/01/30 11:07:22 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+char			*ft_imtoa_base(intmax_t n, int base)
 {
-	char			*res;
-	unsigned int	index;
+	char		*res;
+	uintmax_t	nb;
+	int			index;
+	int			size;
+	const char	vals[] = "0123456789abcdef";
 
-	if (!s)
-		return (NULL);
-	res = ft_strnew(len);
-	if (!res)
+	nb = (n < 0 && base == 10 ? -n : n);
+	size = ft_nblenbase(nb, base) + (n < 0 && base == 10 ? 1 : 0);
+	if (!(res = ft_strnew(size)))
 		return (NULL);
 	index = 0;
-	while (index < len)
+	if (n < 0 && base == 10)
+		res[index++] = '-';
+	while (index < size)
 	{
-		res[index] = s[start + index];
-		index++;
+		res[--size] = vals[nb % base];
+		nb /= base;
 	}
 	return (res);
 }

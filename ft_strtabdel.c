@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_strtabdel.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/12 12:31:51 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/10/03 16:30:40 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/05/12 18:19:44 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+void	ft_strtabdel(char ***at)
 {
-	char			*res;
-	unsigned int	index;
+	char	**tab;
 
-	if (!s)
-		return (NULL);
-	res = ft_strnew(len);
-	if (!res)
-		return (NULL);
-	index = 0;
-	while (index < len)
-	{
-		res[index] = s[start + index];
-		index++;
-	}
-	return (res);
+	if (!at || !*at)
+		return ;
+	tab = *at;
+	while (*tab)
+		ft_strdel(tab++);
+	free(*at);
+	*at = NULL;
 }

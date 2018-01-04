@@ -6,13 +6,13 @@
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/12 12:31:51 by cbarbier          #+#    #+#             */
-/*   Updated: 2016/11/09 14:02:57 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/01/16 18:59:45 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-unsigned int	ft_nblen(unsigned int n)
+int		ft_nblen(unsigned int n)
 {
 	if (n < 10)
 		return (1);

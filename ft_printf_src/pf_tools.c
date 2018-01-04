@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   pf_tools.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/12 12:31:51 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/10/03 16:30:40 by cbarbier         ###   ########.fr       */
+/*   Created: 2017/01/18 13:28:16 by cbarbier          #+#    #+#             */
+/*   Updated: 2017/01/30 09:48:31 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+char		*pf_join(t_pf *pf, t_arg *arg)
 {
-	char			*res;
-	unsigned int	index;
+	char	*buf;
 
-	if (!s)
+	if (!pf->buf || !arg->buf)
 		return (NULL);
-	res = ft_strnew(len);
-	if (!res)
+	if (!(buf = ft_strnew(pf->ret + arg->len)))
 		return (NULL);
-	index = 0;
-	while (index < len)
-	{
-		res[index] = s[start + index];
-		index++;
-	}
-	return (res);
+	ft_memcpy(buf, pf->buf, pf->ret);
+	ft_memcpy(buf + pf->ret, arg->buf, arg->len);
+	ft_strdel(&(arg->buf));
+	ft_strdel(&(pf->buf));
+	return (buf);
 }

@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_strshift.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/12 12:31:51 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/10/03 16:30:40 by cbarbier         ###   ########.fr       */
+/*   Created: 2017/04/28 15:06:45 by cbarbier          #+#    #+#             */
+/*   Updated: 2017/04/28 15:09:19 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+void			ft_strshift(char **data, char c)
 {
-	char			*res;
-	unsigned int	index;
+	char *tmp;
+	char *pos;
 
-	if (!s)
-		return (NULL);
-	res = ft_strnew(len);
-	if (!res)
-		return (NULL);
-	index = 0;
-	while (index < len)
-	{
-		res[index] = s[start + index];
-		index++;
-	}
-	return (res);
+	tmp = *data;
+	if (!(pos = ft_strchr(tmp, c)))
+		*data = ft_strnew(0);
+	else
+		*data = ft_strdup(pos + 1);
+	free(tmp);
 }
